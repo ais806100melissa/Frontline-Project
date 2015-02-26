@@ -1,0 +1,180 @@
+<html>
+<head>
+<title> Level 2 </title>
+
+<script type="text/javascript" src="script/soundmanager2.js"></script>
+<script type="text/javascript" src="script/loadsoundchrome.js"></script>
+
+<script src="../processing-1.4.1.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+	/* @pjs globalKeyEvents ="true"; */
+
+PImage backgroundPicture2;
+PImage zombieLevel2;
+PImage bullet;
+PImage gunMan;
+
+int zombiex1;
+int zombiex2;
+int zombiex3;
+int playMusic;
+
+int gunmanX;
+int health;
+
+int bitten;
+
+int bulletCount;
+int shoot;
+int zombieCount;
+
+
+void setup()
+{
+ 	size(1600,850);
+ 	background(0,0,0);
+    frameRate(30);
+   
+//Images
+    backgroundPicture2 = loadImage("pictures/backgroundLevel2.png");
+    gunMan = loadImage("pictures/gunman.png");
+    zombieLevel2 = loadImage("pictures/zombie2.png");
+    bullet = loadImage("pictures/bullet.png");
+
+    
+//Integers
+	zombiex1 = 1600;  
+	zombiex2 = 1800;
+	zombiex3 = 1950;  
+
+	gunmanX = 100;
+	playMusic = 1;
+	health = 100;
+	bitten = 0;
+	bulletCount = 10;
+	shoot = 1;
+	zombieCount = 0;
+
+}
+
+void draw(){
+
+	background (0,0,0);
+//Images
+	
+	image(backgroundPicture1,0,200,1600,600);
+	image(gunMan,gunmanX,400,190,250);
+	image(zombieLevel1,zombiex1,400,150,250);
+	image(zombieLevel1,zombiex2,400,150,250);
+	image(zombieLevel1,zombiex3,400,150,250);
+
+//Movement Control
+	//Gunman	
+		if (keyPressed == true)
+		{
+			if(gunmanX > 30 && gunmanX < 820)
+			{
+				if (key == 'd')
+				{	
+					gunmanX = gunmanX + 3;
+		
+				}
+		
+				if (key == 'a')
+				{
+					gunmanX = gunmanX - 3;
+				}	
+			}
+		}    	
+	//Zombies
+		zombiex1 = zombiex1 - 1.5;
+		zombiex2 = zombiex2 - 0.5;
+		zombiex3 = zombiex3 - 1;
+	
+//Music
+	if(playMusic == 1)
+	{
+		soundManager.play('s0');
+		playMusic = 0;
+	}
+
+//Collision detection
+	textSize(60);
+	text(health,100,100);
+
+	if (zombiex1 > gunmanX - 2 && zombiex1 < gunmanX + 2)
+	{
+		if(bitten == 0)
+		{
+			health = health - 10;
+		}
+	}
+
+	if (zombiex2 > gunmanX - 2 && zombiex2 < gunmanX + 2)
+	{
+		health = health - 10;
+	}
+
+	if (zombiex3 > gunmanX - 2 && zombiex3 < gunmanX + 2)
+	{
+		health = health - 10;
+	}
+
+//Shoot
+	if(bulletCount > 0)
+	{
+		if(mousePressed == true && mouseButton == LEFT)
+		{
+			//Shoot
+			if(mouseX > 0 && mouseX < 1600 && mouseY > 200 && mouseY < 800)
+			{
+				if(shoot == 1)
+				{
+					bulletCount = bulletCount - 1;
+					shoot = 0;
+				}	
+			}
+		}
+	}
+
+//Count bullets
+	image(bullet,1150,40,100,100);
+	text(bulletCount,1250,110);
+	
+//Count zombies
+	if(zombieCount >= 30)
+	{
+		if(gunmanX == 1580)
+		{
+			
+		}
+	}
+//Increase level
+	{
+		
+	}
+
+//Game over
+	if(health == 0)
+	{
+		//link to game over
+	}
+	
+
+}
+
+</script>
+<canvas id="mycanvas"></canvas>
+</head>
+
+<body>
+
+</body>
+</html>
+
+
+
+
+
+

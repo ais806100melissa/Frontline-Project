@@ -1,0 +1,49 @@
+<title> Instruction Page </title>
+
+<script type="text/javascript" src="script/soundmanager2.js"></script>
+<script type="text/javascript" src="script/loadsoundchrome.js"></script>
+
+<center>
+    <script type="text/javascript" src="script/processing-1.4.1.js"></script>
+    <script type="text/processing" data-processing-target="mycanvas">
+
+/* @pjs globalKeyEvents = "true"; */
+
+PFont vanHelsing;
+
+void setup()
+
+{  
+
+    size( 1600, 850 );  
+    background(215,255,255);
+    frameRate( 30 );
+    
+    vanHelsing = loadFont("Van Helsing");
+	
+}  
+
+
+void draw()
+{
+	fill(0,0,0);
+	textFont(vanHelsing,50);
+	text("Instructions",300,130);
+	text("The goal is simple: Kill as many zombies and survive as far as possible",190,200);
+	text("You start with full health bar, a handgun and 3 grenades",300,270);
+	text("Every 1 ammo contains 20 bullets. Purchase more ammo and reload to shoot",110,340); 
+	text("Earn money by killing zombies",550,410);
+	text("Press 'D' to move forward",580,480);
+	text("Press '1' to select hand gun and '2' to select grenade",350,550);
+	text("1 zombie bite: -20% health",600,620);
+	text("You will regain 80% of your health every 50 meters travelled",300,690); 
+	text("Zombies die with three shots",600,760);
+	text("Throwing a grenade kills all zombies in range",500,830)
+
+
+
+}
+
+    </script>
+    <canvas id="mycanvas"></canvas>
+</center>
